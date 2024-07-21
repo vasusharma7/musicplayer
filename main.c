@@ -50,7 +50,7 @@ size_t getID3Size(Audio audio){
     // of HEADER = size of Footer.
     // Ref:https://mutagen-specs.readthedocs.io/en/latest/id3/id3v2.4.0-structure.html
     size_t size = ID3_sync_safe_to_int(data[6],data[7],data[8],data[9]) + (footer ? 20 : 10);
-    printf("\nSize of ID3 = %zu\n", size );
+    if(DEBUG) printf("\nSize of ID3 = %zu\n", size );
     return size;
 }
 
