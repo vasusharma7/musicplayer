@@ -1,3 +1,11 @@
+/**
+ * Author: @vasusharma7
+ * Date: 21st July, 2024
+ *
+ * WIP: Reads, decodes and plays an MP3 file.
+ *
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include <stdbool.h>
@@ -5,11 +13,9 @@
 bool DEBUG = true;
 
 typedef struct Audio {
-
     char*  data;
     long long len; 
-
-} Audio ;
+} Audio;
 
 Audio readMusicFile(char *);
 void printBits(Audio, long long, long long);
