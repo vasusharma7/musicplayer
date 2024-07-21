@@ -25,9 +25,10 @@ int main(int argv, char **argc){
     
     Audio audio = readMusicFile(argc[1]);
     
-    if(DEBUG) printf("ID3 HEADER: ");
-    if(DEBUG) printBits(audio, 10 ,0 );    
-
+    if(DEBUG){
+        printf("ID3 HEADER:\n");
+        printBits(audio, 10 ,0 );    
+    }
 
     size_t ID3size = getID3Size(audio);
     
@@ -40,7 +41,14 @@ int main(int argv, char **argc){
 
 size_t getID3Size(Audio audio){
     char *data = audio.data;
+    // Fifth byte of the header contains flags and 4th bit if set, conveys that footer
+    // if present. Footer = header (except for identification string which is 3DI in 
+    // place of ID3 within the header (first 3 bytes i.e. 49 44 33 in ASCII Hex ) 
     bool footer = audio.data[5] & 0x10;
+    // Bytes 7 to 10 represent size of rest of ID3 HEADER exlcuding footer if present
+    // Hence, total size is obtained by adding 20/10 accordingly where 10 is the size
+    // of HEADER = size of Footer.
+    // Ref:https://mutagen-specs.readthedocs.io/en/latest/id3/id3v2.4.0-structure.html
     size_t size = ID3_sync_safe_to_int(data[6],data[7],data[8],data[9]) + (footer ? 20 : 10);
     printf("\nSize of ID3 = %zu\n", size );
     return size;
