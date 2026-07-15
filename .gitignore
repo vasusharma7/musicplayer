@@ -53,4 +53,4 @@ dkms.conf
 
 out
 wav
-.wav
+*.wav
