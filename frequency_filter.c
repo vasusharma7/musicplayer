@@ -5,7 +5,7 @@
 #include "wav.h"
 
 #define SAMPLE_RATE 44100
-#define N 1024  // Block size
+#define N 4410  // Block size
 
 int main(int argc, char *argv[]) {
      if (argc != 2) {

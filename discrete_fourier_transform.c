@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
     printf("\n%-10s | %-15s | %-10s\n", "Bin (k)", "Frequency (Hz)", "Magnitude");
     printf("---------------------------------------------\n");
     
-    for (int k = 0; k < N; k++) {
+    for (int k = 0; k < N / 2; k++) {
         double freq = k * ((double)SAMPLE_RATE / N);
         
         // Only print frequencies that have significant energy to avoid terminal spam
